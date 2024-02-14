@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Pages</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #fce4ec; /* Light pink background */
+      margin: 0;
+    }
+
+    .message-container {
+      padding: 20px;
+      background-color: #fff;
+      border: 2px solid #ff4081; /* Pink border */
+      margin: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    button {
+      padding: 10px;
+      background-color: #ff4081; /* Pink button color */
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="page1" class="message-container">
+    <h1>I am short</h1>
+    <button onclick="showNextPage('page2')">Next Defect</button>
+  </div>
+
+  <div id="page2" class="message-container" style="display: none;">
+    <h1>I am black</h1>
+    <button onclick="showNextPage('page3')">Next Defect</button>
+  </div>
+
+  <div id="page3" class="message-container" style="display: none;">
+    <h1>I am obnoxious</h1>
+    <button onclick="showNextPage('questionPage')">Question</button>
+  </div>
+
+  <div id="questionPage" class="message-container" style="display: none;">
+    <h1>Do you love me still?</h1>
+    <input type="text" id="answerInput" placeholder="Answer y/n">
+    <button onclick="checkAnswer()">Submit</button>
+  </div>
+
+  <script>
+    function showNextPage(nextPageId) {
+      document.getElementById("page1").style.display = "none";
+      document.getElementById("page2").style.display = "none";
+      document.getElementById("page3").style.display = "none";
+      document.getElementById("questionPage").style.display = "none";
+
+      document.getElementById(nextPageId).style.display = "block";
+    }
+
+    function checkAnswer() {
+      var answer = document.getElementById("answerInput").value.toLowerCase();
+
+      if (answer === 'y') {
+        alert("OMG YESS where is my ring");
+      } else if (answer === 'n') {
+        alert("OMG wait for your ring");
+      } else {
+        alert("Whatever your answer, I will always love you");
+      }
+    }
+  </script>
+
+</body>
+</html>
