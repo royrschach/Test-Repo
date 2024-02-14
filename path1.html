@@ -3,56 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Error: Cannot Execute Code</title>
+  <title>Interactive Pages</title>
   <style>
     body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background-color: #e57373; /* Light red background */
       margin: 0;
-      background-color: #fce4ec; /* Light pink background */
+      color: #451515; /* White text color */
     }
 
     .message-container {
-      text-align: center;
-      font-family: 'Arial', sans-serif;
-      color: #ff4081; /* Pink text color */
-      cursor: pointer;
-      display: none;
+      padding: 20px;
+      background-color: #f8f6f7; /* Pink background */
+      border: 2px solid #880e4f; /* Deep pink border */
+      margin: 20px;
+      max-width: 400px;
+      margin: auto;
     }
 
-    #error-message {
-      display: block;
+    button {
+      padding: 10px;
+      background-color: #880e4f; /* Deep pink button color */
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 10px;
+    }
+
+    #resultMessage {
+      font-size: 24px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <div id="error-message" class="message-container" onclick="showNextMessage('youAreTheBest')">
-    <h1>Error: Cannot Execute Code</h1>
-    <p>Click here to continue</p>
+
+  <div id="page1" class="message-container">
+    <h1>I am smart</h1>
+    <button onclick="showNextPage('page2')">Next Asset</button>
   </div>
 
-  <div id="youAreTheBest" class="message-container" onclick="showNextMessage('youAreTheSmartest')">
-    <h1>You're the Best!</h1>
-    <p>Click here to continue</p>
+  <div id="page2" class="message-container" style="display: none;">
+    <h1>I am cute</h1>
+    <button onclick="showNextPage('page3')">Next Asset</button>
   </div>
 
-  <div id="youAreTheSmartest" class="message-container" onclick="revealFinalMessage()">
-    <h1>You're the Smartest!</h1>
-    <p>Click here for the final message</p>
+  <div id="page3" class="message-container" style="display: none;">
+    <h1>I am polite</h1>
+    <button onclick="showNextPage('questionPage')">Question</button>
+  </div>
+
+  <div id="questionPage" class="message-container" style="display: none;">
+    <h1>Do you love me still?</h1>
+    <input type="text" id="answerInput" placeholder="Answer y/n">
+    <button onclick="displayResult()">Submit</button>
+  </div>
+
+  <div id="page4" class="message-container" style="display: none;">
+    <h1>Happy Valentine's Day!</h1>
+    <div id="resultMessage"></div>
   </div>
 
   <script>
-    function showNextMessage(nextMessageId) {
-      document.getElementById("error-message").style.display = "none";
-      document.getElementById("youAreTheBest").style.display = "none";
-      document.getElementById(nextMessageId).style.display = "block";
+    function showNextPage(nextPageId) {
+      document.getElementById("page1").style.display = "none";
+      document.getElementById("page2").style.display = "none";
+      document.getElementById("page3").style.display = "none";
+      document.getElementById("questionPage").style.display = "none";
+      document.getElementById("page4").style.display = "none";
+
+      document.getElementById(nextPageId).style.display = "block";
+
+      // Automatically show page 4 after page 3
+      if (nextPageId === "questionPage") {
+        setTimeout(function() {
+          showNextPage('page4');
+        }, 30000); // Change the delay as needed (here, 3000 milliseconds or 3 seconds)
+      }
     }
 
-    function revealFinalMessage() {
-      alert("Final Message: I Love You Forever!");
+    function displayResult() {
+      var answer = document.getElementById("answerInput").value.toLowerCase();
+      var resultMessage = document.getElementById("resultMessage");
+
+      if (answer === 'y') {
+        resultMessage.innerHTML = "OMG YESS where is my ring";
+      } else if (answer === 'n') {
+        resultMessage.innerHTML = "OMG wait for your ring";
+      } else {
+        resultMessage.innerHTML = "Whatever your answer, I will always love you";
+      }
+
+      showNextPage('page4');
     }
   </script>
+
 </body>
 </html>
