@@ -7,10 +7,7 @@ Sadly I can't introduce blinds in this testing - the subject knows that they are
 
 You have two paths - Choose your path wisely as you submit to being a guinea pig to my nefarious means -
 
-Path 1 
+[Path 1](path1.html) 
 Path 2
 
 ( Story should be somehow around how all roads lead her to me)
-
-Manogna please read [this](feb_14.html) !
-
