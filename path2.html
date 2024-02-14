@@ -8,14 +8,15 @@
     body {
       font-family: 'Arial', sans-serif;
       text-align: center;
-      background-color: #fce4ec; /* Light pink background */
+      background-color: #e57373; /* Light red background */
       margin: 0;
+      color: #fff; /* White text color */
     }
 
     .message-container {
       padding: 20px;
-      background-color: #fff;
-      border: 2px solid #ff4081; /* Pink border */
+      background-color: #f06292; /* Pink background */
+      border: 2px solid #880e4f; /* Deep pink border */
       margin: 20px;
       max-width: 400px;
       margin: auto;
@@ -23,7 +24,7 @@
 
     button {
       padding: 10px;
-      background-color: #ff4081; /* Pink button color */
+      background-color: #880e4f; /* Deep pink button color */
       color: #fff;
       border: none;
       cursor: pointer;
@@ -32,29 +33,39 @@
     input {
       padding: 10px;
     }
+
+    #resultMessage {
+      font-size: 24px;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
 
   <div id="page1" class="message-container">
-    <h1>I am short</h1>
-    <button onclick="showNextPage('page2')">Next Defect</button>
+    <h1>I am smart</h1>
+    <button onclick="showNextPage('page2')">Next Asset</button>
   </div>
 
   <div id="page2" class="message-container" style="display: none;">
-    <h1>I am black</h1>
-    <button onclick="showNextPage('page3')">Next Defect</button>
+    <h1>I am cute</h1>
+    <button onclick="showNextPage('page3')">Next Asset</button>
   </div>
 
   <div id="page3" class="message-container" style="display: none;">
-    <h1>I am obnoxious</h1>
+    <h1>I am polite</h1>
     <button onclick="showNextPage('questionPage')">Question</button>
   </div>
 
   <div id="questionPage" class="message-container" style="display: none;">
     <h1>Do you love me still?</h1>
     <input type="text" id="answerInput" placeholder="Answer y/n">
-    <button onclick="checkAnswer()">Submit</button>
+    <button onclick="displayResult()">Submit</button>
+  </div>
+
+  <div id="page4" class="message-container" style="display: none;">
+    <h1>Happy Valentine's Day!</h1>
+    <div id="resultMessage"></div>
   </div>
 
   <script>
@@ -63,20 +74,31 @@
       document.getElementById("page2").style.display = "none";
       document.getElementById("page3").style.display = "none";
       document.getElementById("questionPage").style.display = "none";
+      document.getElementById("page4").style.display = "none";
 
       document.getElementById(nextPageId).style.display = "block";
+
+      // Automatically show page 4 after page 3
+      if (nextPageId === "questionPage") {
+        setTimeout(function() {
+          showNextPage('page4');
+        }, 3000); // Change the delay as needed (here, 3000 milliseconds or 3 seconds)
+      }
     }
 
-    function checkAnswer() {
+    function displayResult() {
       var answer = document.getElementById("answerInput").value.toLowerCase();
+      var resultMessage = document.getElementById("resultMessage");
 
       if (answer === 'y') {
-        alert("OMG YESS where is my ring");
+        resultMessage.innerHTML = "OMG YESS where is my ring";
       } else if (answer === 'n') {
-        alert("OMG wait for your ring");
+        resultMessage.innerHTML = "OMG wait for your ring";
       } else {
-        alert("Whatever your answer, I will always love you");
+        resultMessage.innerHTML = "Whatever your answer, I will always love you";
       }
+
+      showNextPage('page4');
     }
   </script>
 
