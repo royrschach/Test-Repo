@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error: Cannot Execute Code</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #fce4ec; /* Light pink background */
+    }
+
+    .message-container {
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      color: #ff4081; /* Pink text color */
+      cursor: pointer;
+      display: none;
+    }
+
+    #error-message {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="error-message" class="message-container" onclick="showNextMessage('youAreTheBest')">
+    <h1>Error: Cannot Execute Code</h1>
+    <p>Click here to continue</p>
+  </div>
+
+  <div id="youAreTheBest" class="message-container" onclick="showNextMessage('youAreTheSmartest')">
+    <h1>You're the Best!</h1>
+    <p>Click here to continue</p>
+  </div>
+
+  <div id="youAreTheSmartest" class="message-container" onclick="revealFinalMessage()">
+    <h1>You're the Smartest!</h1>
+    <p>Click here for the final message</p>
+  </div>
+
+  <script>
+    function showNextMessage(nextMessageId) {
+      document.getElementById("error-message").style.display = "none";
+      document.getElementById("youAreTheBest").style.display = "none";
+      document.getElementById(nextMessageId).style.display = "block";
+    }
+
+    function revealFinalMessage() {
+      alert("Final Message: I Love You Forever!");
+    }
+  </script>
+</body>
+</html>
